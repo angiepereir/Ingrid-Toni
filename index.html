@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Nuestra Boda! – Romina & German</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+  <div class="floral-corner tl" aria-hidden="true"></div>
+  <div class="floral-corner br" aria-hidden="true"></div>
+
+    <!-- NAV -->
+  <nav class="nav" aria-label="principal">
+    <div class="nav-inner container">
+      <div class="brand"><span class="brand-mark" aria-hidden></span> Romina & Germán</div>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu">☰</button>
+      <div id="menu" class="menu" role="menubar">
+        <a role="menuitem" href="#inicio">Inicio</a>
+        <a role="menuitem" href="#galeria">Galería</a>
+        <a role="menuitem" href="#subir">Subir fotos</a>
+        <a role="menuitem" href="#qr">QR</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- INICIO -->
+  <header id="inicio" class="hero" role="banner">
+    <div class="hero-box">
+      <h1>¡Nos casamos!</h1>
+      <p>Romina & Germán · 20 de Diciembre de 2025 · Las Lomas Eventos, Caacupe</p>
+    </div>
+  </header>
+
+  <!-- GALERÍA -->
+  <section id="galeria" aria-labelledby="galeria-title">
+    <div class="container">
+      <h2 id="galeria-title">Galería</h2>
+      <div class="card"><div class="card-inner">
+        <p class="muted" id="gallery-hint">Toca una foto para ampliarla.</p>
+        <div id="gallery" class="grid" aria-live="polite"></div>
+        <div class="actions center">
+        <button id="btn-more" class="btn secondary">Ver más</button>
+        </div>
+
+      </div></div>
+    </div>
+  </section>
+
+  <!-- SUBIR -->
+  <section id="subir" aria-labelledby="subir-title">
+    <div class="container">
+      <h2 id="subir-title">Subir fotos (invitados)</h2>
+      <div class="card"><div class="card-inner">
+        <div class="upload">
+          <div id="drop" class="drop" tabindex="0" aria-label="Zona para arrastrar y soltar imágenes">
+            Arrastra tus fotos aquí o <label for="file" class="btn" style="cursor:pointer">Selecciónalas</label>
+            <input id="file" type="file" accept="image/*" multiple hidden />
+          </div>
+          <div class="actions">
+            <label class="btn secondary" for="camera">Hacer foto</label>
+            <input id="camera" type="file" accept="image/*" capture="environment" hidden />
+          </div>
+          <p class="muted" id="upload-note">Las fotos se compartirán para que todos las vean en la galería.</p>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+
+  <!-- QR -->
+<section id="qr" aria-labelledby="qr-title">
+  <div class="container">
+    <h2 id="qr-title">Comparte tus fotos</h2>
+    <div class="card"><div class="card-inner">
+      <div class="qr-box">
+        <p class="muted">Escanea este QR para subir tus fotos del evento.</p>
+        <div id="qrcode"></div>
+        <div class="actions">
+          <button id="btn-copy" class="btn">Copiar enlace</button>
+          <button id="btn-download" class="btn secondary">Descargar QR (PNG)</button>
+        </div>
+        <p class="muted" id="qr-fallback" hidden>Si no ves el QR, abre este enlace o haz una captura.</p>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Romina & Germán · <a href="#inicio">Volver arriba</a></p>
+    </div>
+  </footer>
+
+   <!-- QR lib -->
+<script defer src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
+  <!-- Firebase (compat) -->
+  <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+
+  <script defer src="index.js"></script>
+
+
+</body>
+</html>
