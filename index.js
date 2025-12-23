@@ -1,19 +1,23 @@
 
 const FIREBASE_ENABLED = true;
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyAMHN-dfPfD_kcOdl2WCxeX-RH55AoxYZw",
-  authDomain: "boda-r-y-g.firebaseapp.com",
-  projectId: "boda-r-y-g",
-  storageBucket: "boda-r-y-g.firebasestorage.app",
-  messagingSenderId: "335827726121",
-  appId: "1:335827726121:web:db8e518bee3d88d67ad138",
-  measurementId: "G-XE9MXRTQFC"
+  apiKey: "AIzaSyBOCwXXEmo11gCoye0e00HnEmc2OrFXiPQ",
+  authDomain: "boda-ingrid-antonio.firebaseapp.com",
+  projectId: "boda-ingrid-antonio",
+  storageBucket: "boda-ingrid-antonio.firebasestorage.app",
+  messagingSenderId: "800504705866",
+  appId: "1:800504705866:web:75499c8d471e95a080c7b3"
 };
+
+// Identificador del evento (sirve para separar bodas)
+const EVENT_ID = "boda-ingrid-antonio";
+const PHOTOS_COLLECTION = `photos_${EVENT_ID}`;  // colección única para este evento
+
 
 // ====== Cloudinary ======
 const CLOUDINARY_CLOUD_NAME = "dauzwfc8z";
-const CLOUDINARY_UPLOAD_PRESET = "bodar-g";
-const CLOUDINARY_FOLDER = "wedding-photos";
+const CLOUDINARY_UPLOAD_PRESET = "boda_ingrid_antonio";
+const CLOUDINARY_FOLDER = "boda-ingrid-antonio";
 const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
 
 // ========= CONFIGURACIÓN ADMIN (UI) =========
@@ -299,7 +303,7 @@ async function deleteSelectedPhotos() {
     for (const photoId of selectedPhotos) {
       if (fb.usingFirebase && !photoId.startsWith('local_')) {
         try {
-          await fb.db.collection('photos').doc(photoId).delete();
+          await fb.db.collection(PHOTOS_COLLECTION).doc(photoId).delete();
           deletedCount++;
         } catch (error) {
           console.error(`Error eliminando foto ${photoId}:`, error);
@@ -517,7 +521,7 @@ async function uploadToCloudinary(blob){
   fd.append('file', blob, 'photo.jpg');
   fd.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
   if (CLOUDINARY_FOLDER) fd.append('folder', CLOUDINARY_FOLDER);
-  fd.append('tags', 'boda,romina,german');
+  fd.append('tags', 'boda,ingrid,antonio');
   
   const res = await fetch(CLOUDINARY_UPLOAD_URL, { method: 'POST', body: fd });
   if (!res.ok) throw new Error('Cloudinary upload failed');
@@ -540,7 +544,7 @@ async function handleFiles(fileList){
         const blob = dataURLtoBlob(durl);
         const result = await uploadToCloudinary(blob);
         if (result.secure_url) {
-          await fb.db.collection('photos').add({
+          await fb.db.collection(PHOTOS_COLLECTION).add({
             url: result.secure_url,
             uploaderId: fb.auth.currentUser?.uid || 'anonymous',
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
@@ -577,7 +581,7 @@ async function handleFiles(fileList){
 // ========= Galería en tiempo real =========
 if (fb.usingFirebase) {
   galleryHint.textContent = 'Las fotos de todos aparecen aquí en tiempo real.';
-  fb.db.collection('photos').orderBy('createdAt', 'desc').limit(200)
+  fb.db.collection(PHOTOS_COLLECTION).orderBy('createdAt', 'desc').limit(200)
     .onSnapshot((snap) => {
       const firebasePhotos = [];
       snap.forEach(doc => {
@@ -610,7 +614,7 @@ const qrFallback = document.getElementById('qr-fallback');
 const btnCopy = document.getElementById('btn-copy');
 const btnDownload = document.getElementById('btn-download');
 
-const CANONICAL_URL = 'https://angiepereir.github.io/Boda-R-G/';
+const CANONICAL_URL = 'https://angiepereir.github.io/Ingrid-Toni/';
 const pageUrl = CANONICAL_URL;
 if (qrUrlSpan) { qrUrlSpan.textContent = pageUrl; qrUrlSpan.style.wordBreak = 'break-all'; }
 

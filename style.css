@@ -1,22 +1,27 @@
-/* ============ PALETA SAKURA ============ */
 :root{
-  /* Base de colores */
-  --rose-50:   #FFF5F1; /* crudo muy claro */
-  --rose-200:  #FFD1DA; /* rosa suave */
-  --rose-400:  #F38AA7; /* rosa medio (acento) */
-  --rose-700:  #9B3A53; /* rosa oscuro (contraste) */
-  --sage-300:  #C9D9C0; /* verde salvia suave */
+  /* Base (inspirado en girasol) */
+  --sun-50:   #FFFBEB; /* crema */
+  --sun-100:  #FFF4C7; /* crema cálida */
+  --sun-300:  #FFD54A; /* amarillo girasol */
+  --sun-500:  #F6B700; /* dorado intenso */
+  --sun-700:  #ebb98a; /* naranja tostado */
+  --seed-900: #2B1A0E; /* “semilla” (marrón oscuro) */
+  --leaf-400: #6FAF3D; /* verde hoja */
+  --leaf-700: #2E6B2C; /* verde oscuro */
 
-  /* Mapeo con tus variables originales */
-  --burgundy:       var(--rose-400);
-  --burgundy-light: var(--rose-200);
-  --burgundy-dark:  var(--rose-700);
+  /* Mapeo con tus variables originales (para NO tocar el resto del CSS) */
+  --burgundy:       var(--sun-500);   /* botón principal/acento */
+  --burgundy-light: var(--sun-300);   /* hover / acento suave */
+  --burgundy-dark:  var(--sun-700);   /* títulos / contraste */
   --black: #000;
   --white: #fff;
-  --bg: var(--rose-50);        /* fondo claro */
-  --bg-card: #ffffffcc;        /* tarjetas translúcidas */
-  --ink: #2b2b2b;              /* texto principal en claro */
-  --muted: #6b6b6b;
+
+  --bg:      var(--sun-50);
+  --bg-card: #ffffffcc;
+
+  --ink:   #1f1a14;  /* texto principal */
+  --muted: #6b6258;
+
   --maxw: 1200px;
   --radius: 16px;
   --radius-lg: 24px;
@@ -37,30 +42,32 @@ html {
   html { scroll-behavior: auto; } 
 }
 
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  /* fondo con halos rosa/salvia */
+
+  /* Fondo “cálido” girasol */
   background:
-    radial-gradient(900px 400px at 12% -10%, rgba(243,138,167,.12), transparent),
-    radial-gradient(900px 400px at 110% 10%, rgba(201,217,192,.14), transparent),
+    radial-gradient(900px 420px at 10% -10%, rgba(255, 213, 74, .22), transparent),
+    radial-gradient(900px 420px at 110% 12%, rgba(111, 175, 61, .16), transparent),
+    radial-gradient(700px 320px at 50% 110%, rgba(246, 183, 0, .14), transparent),
     var(--bg);
+
   color: var(--ink);
   overflow-x: hidden;
   line-height: 1.6;
 }
 
-/* patrón floral sutil */
+/* Patrón sutil (semillas + pétalos) */
 body::before{
   content:"";
-  position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.24;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23f7c5d2' stroke-opacity='0.65'%3E%3Cpath d='M80 10c20 20 20 40 0 60-20-20-20-40 0-60z'/%3E%3Cpath d='M40 80c20 20 20 40 0 60-20-20-20-40 0-60z'/%3E%3Cpath d='M120 80c20 20 20 40 0 60-20-20-20-40 0-60z'/%3E%3Ccircle cx='80' cy='80' r='6' fill='%23ffd1da'/%3E%3C/g%3E%3C/svg%3E");
+  position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.18;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none'%3E%3Ccircle cx='90' cy='90' r='4' fill='%23B85A00' fill-opacity='0.22'/%3E%3Cpath d='M90 48c14 10 18 24 0 38-18-14-14-28 0-38z' fill='%23FFD54A' fill-opacity='0.18'/%3E%3Cpath d='M132 90c-10 14-24 18-38 0 14-18 28-14 38 0z' fill='%23FFD54A' fill-opacity='0.14'/%3E%3Cpath d='M90 132c-14-10-18-24 0-38 18 14 14 28 0 38z' fill='%23FFD54A' fill-opacity='0.12'/%3E%3Cpath d='M48 90c10-14 24-18 38 0-14 18-28 14-38 0z' fill='%23FFD54A' fill-opacity='0.14'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-a { 
-  color: inherit; 
-  transition: var(--transition);
-}
+/* Links */
+a { color: inherit; transition: var(--transition); }
 
 .container {
   max-width: var(--maxw);
@@ -173,7 +180,7 @@ a {
   padding: var(--space);
   background: 
     /*linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,245,241,.9)),*/
-    url('img/her02.png') center/cover no-repeat;
+    url('img/girasol.png') center/cover no-repeat;
   position: relative;
 }
 
@@ -186,7 +193,7 @@ a {
 }
 
 .hero-box {
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(40px);
   padding: clamp(24px, 5vw, 40px);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
@@ -201,7 +208,7 @@ a {
   margin: 0 0 12px;
   font-size: clamp(32px, 8vw, 64px);
   font-weight: 900;
-  background: linear-gradient(135deg, var(--burgundy-dark), #c26d81);
+  background: linear-gradient(135deg, var(--burgundy-dark), #fbdae2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -500,7 +507,7 @@ h2 {
 footer {
   padding: 40px 0;
   border-top: 1px solid rgba(0,0,0,0.08);
-  background: #fff;
+  background: #FFFBEB;
   text-align: center;
   color: var(--muted);
 }
@@ -539,7 +546,7 @@ canvas { image-rendering: pixelated; }
 .floral-corner{
   position:fixed; width:220px; height:220px; z-index:0; opacity:.45;
   filter:drop-shadow(0 8px 16px rgba(0,0,0,.08));
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23F38AA7'/%3E%3Cstop offset='100%25' stop-color='%239B3A53'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='url(%23g)' opacity='0.9'%3E%3Cpath d='M60 210c40-20 60-60 20-100-40 40-20 80-20 100z'/%3E%3Cpath d='M110 230c30-30 30-70-10-110-30 40-20 80 10 110z'/%3E%3Ccircle cx='150' cy='210' r='22'/%3E%3Cpath d='M120 110c30 10 60 10 90 0-30 20-60 20-90 0z'/%3E%3C/g%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23FFE066'/%3E%3Cstop offset='45%25' stop-color='%23FFC400'/%3E%3Cstop offset='75%25' stop-color='%23F6B700'/%3E%3Cstop offset='100%25' stop-color='%23C97A00'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='url(%23g)' opacity='0.96'%3E%3Cpath d='M60 210c40-20 60-60 20-100-40 40-20 80-20 100z'/%3E%3Cpath d='M110 230c30-30 30-70-10-110-30 40-20 80 10 110z'/%3E%3Ccircle cx='150' cy='210' r='22' fill='%23FFE8A3'/%3E%3Cpath d='M120 110c30 10 60 10 90 0-30 20-60 20-90 0z'/%3E%3C/g%3E%3C/svg%3E");
   background-size:contain; background-repeat:no-repeat; pointer-events:none;
 }
 .floral-corner.tl{top:-40px; left:-10px; transform:rotate(-10deg)}
